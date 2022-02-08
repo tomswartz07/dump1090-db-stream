@@ -8,8 +8,8 @@ import datetime
 import os
 import argparse
 import time
-import psycopg2
-from psycopg2 import sql
+import psycopg
+from psycopg import sql
 
 # Dump1090
 dumphost = os.environ.get('DUMP1090HOST')
@@ -115,13 +115,13 @@ def commit_data(conn, data, datestamp, args):
                 cur.execute(insert_str, data_dict)
                 conn.commit()
                 return None
-            except psycopg2.errors.lookup("22P02") as e:
+            except psycopg.errors.lookup("22P02") as e:
                 # Sometimes we get bad data in the correct number
                 # Just roll it back, forget about it, and keep going.
                 print(e.pgcode)
                 print(e.pgerror)
                 conn.rollback()
-            except psycopg2.Error as e:
+            except psycopg.Error as e:
                 print(e.pgcode)
                 print(e.pgerror)
                 return sys.exit()
@@ -150,8 +150,8 @@ def connect_to_db(db, user, host, password, port, schema):
         )
     try:
         print("Connecting to db")
-        return psycopg2.connect(connection)
-    except psycopg2.Error as e:
+        return psycopg.connect(connection)
+    except psycopg.Error as e:
         print(e.pgcode)
         print(e.pgerror)
         return None

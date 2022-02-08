@@ -17,6 +17,7 @@ ENV BATCH_SIZE="1"
 ENV CONNECT_ATTEMPT_LIMIT="10"
 ENV CONNECT_ATTEMPT_DELAY="5.0"
 
+RUN apk update && apk add --no-cache postgresql-client
 COPY create_schema.sql .
 COPY dump1090-postgres.py .
 COPY requirements.txt .
