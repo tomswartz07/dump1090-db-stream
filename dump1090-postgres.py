@@ -149,7 +149,7 @@ def connect_to_db(db, user, host, password, port, schema):
         db, user, host, password, port, "dump1090 ADS-B Loader", schema
         )
     try:
-        print("Connecting to db")
+        print(f"{datetime.datetime.now().strftime('%d %b %y %H:%M:%S')}: Connecting to db")
         return psycopg2.connect(connection)
     except psycopg2.Error as e:
         print(e.pgcode)
@@ -182,15 +182,19 @@ def main():
         try:
             s = connect_to_socket(args.dump1090, args.port)
             count_failed_connection_attempts = 1
-            print("Connected to dump1090 broadcast")
+            print(f"{datetime.datetime.now().strftime('%d %b %y %H:%M:%S')}: \
+                    Connected to dump1090 broadcast")
             break
         except socket.error:
             count_failed_connection_attempts += 1
-            print(f"Cannot connect to dump1090 broadcast. Making attempt \
+            print(f"{datetime.datetime.now().strftime('%d %b %y %H:%M:%S')}: \
+                    Cannot connect to dump1090 broadcast. Making attempt \
                     {count_failed_connection_attempts}.")
             time.sleep(args.connect_attempt_delay)
     else:
-        print("Failed to get socket connection")
+        print(f"{datetime.datetime.now().strftime('%d %b %y %H:%M:%S')}: \
+                Failed to get socket connection")
+        print("Restarting...")
         sys.exit()
 
     data_str = ""
@@ -221,12 +225,12 @@ def main():
                     try:
                         s = connect_to_socket(args.dump1090, args.port)
                         count_failed_connection_attempts = 1
-                        print("Reconnected!")
+                        print(f"{ts}: Reconnected!")
                         break
                     except socket.error:
                         count_failed_connection_attempts += 1
-                        print("The attempt failed.\
-                                Making attempt %s." % (count_failed_connection_attempts))
+                        print(f"The attempt failed. Making attempt \
+                                {count_failed_connection_attempts}")
                         time.sleep(args.connect_attempt_delay)
                 else:
                     sys.exit()
