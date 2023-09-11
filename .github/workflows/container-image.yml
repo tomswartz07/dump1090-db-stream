@@ -3,6 +3,9 @@ on:
   push:
     tags:
       - '*'
+  workflow_run:
+    workflows: [Bump version]
+
 jobs:
   testbuild:
     runs-on: ubuntu-latest
