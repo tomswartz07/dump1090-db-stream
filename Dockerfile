@@ -28,3 +28,4 @@ RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 ENTRYPOINT ["python", "/dump1090-postgres.py"]
+HEALTHCHECK CMD ps aux | grep '[d]ump1090' || exit 1
