@@ -1,4 +1,4 @@
-FROM python:3.12.3-alpine
+FROM python:3.12.4-alpine
 LABEL org.opencontainers.image.source=https://github.com/tomswartz07/dump1090-db-stream
 LABEL org.opencontainers.image.authors="tom+docker@tswartz.net"
 LABEL description="Docker container to ingest ADS/B data via Dump1090 streams and store it in a PostgreSQL database."
