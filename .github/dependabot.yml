@@ -11,27 +11,15 @@ updates:
       interval: "weekly"
       time: "07:00"
       timezone: "America/New_York"
-    assignees:
-      - "tomswartz07"
-    reviewers:
-      - "tomswartz07"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
       time: "07:00"
       timezone: "America/New_York"
-    assignees:
-      - "tomswartz07"
-    reviewers:
-      - "tomswartz07"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "weekly"
       time: "07:00"
       timezone: "America/New_York"
-    assignees:
-      - "tomswartz07"
-    reviewers:
-      - "tomswartz07"
