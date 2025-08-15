@@ -27,7 +27,7 @@ BUFFER_SIZE = os.environ.get('BUFFER_SIZE')
 BATCH_SIZE = os.environ.get('BATCH_SIZE')
 CONNECT_ATTEMPT_LIMIT = os.environ.get('CONNECT_ATTEMPT_LIMIT')
 CONNECT_ATTEMPT_DELAY = os.environ.get('CONNECT_ATTEMPT_DELAY')
-verbose = False
+verbose = os.environ.get('DUMP1090DEBUG')
 
 
 def args_parse():
@@ -80,7 +80,7 @@ def args_parse():
                                 before trying again.\
                                 Defaults to {CONNECT_ATTEMPT_DELAY}")
     parser.add_argument("--verbose",
-                        action="store_true", default=verbose,
+                        action="store_true", default=False,
                         help="Print out the messages as they're received.\
                                 Defaults to quiet mode.")
 
